@@ -328,8 +328,8 @@ body, .bar, a, h1, h2, h3, .project, .photo, .project .media {
 
 /* warawara drifting behind the page (Princess Mononoke). Drawn by site.js, ghibli mode only. */
 .wara { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.wara img { position: absolute; top: 0; left: 0; opacity: .4; will-change: transform; }
-:root[data-theme="dark"] .wara img { opacity: .42; }
+.wara img { position: absolute; top: 0; left: 0; opacity: .65; will-change: transform; }
+:root[data-theme="dark"] .wara img { opacity: .55; }
 :root[data-ghibli] main, :root[data-ghibli] footer, :root[data-ghibli] .sky, :root[data-ghibli] .sky-note { position: relative; z-index: 1; }
 :root[data-ghibli] h2 { font-size: 24px; font-weight: 600; }
 :root[data-ghibli] .project h3 { font-size: 17px; }
