@@ -29,6 +29,58 @@
   }
   if (root.hasAttribute("data-ghibli")) ghibliFonts();
 
+  // ---- warawara: a few float behind the page and bounce off the edges ----
+  var wara = null, waraRaf = 0;
+  function waraOn() {
+    if (wara) return;
+    wara = document.createElement("div");
+    wara.className = "wara";
+    wara.setAttribute("aria-hidden", "true");
+    document.body.insertBefore(wara, document.body.firstChild);
+    var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var count = innerWidth < 720 ? 3 : 6;
+    var picks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].sort(function () { return Math.random() - .5; });
+    var sprites = [];
+    for (var i = 0; i < count; i++) {
+      var img = new Image();
+      var size = 40 + Math.random() * 26;
+      img.src = base + "assets/ghibli/warawara/w" + picks[i] + ".png";
+      img.alt = "";
+      img.width = size;
+      var a = Math.random() * Math.PI * 2, v = 14 + Math.random() * 16;   // px per second
+      sprites.push({ el: img, s: size, x: Math.random() * (innerWidth - size), y: Math.random() * (innerHeight - size),
+        vx: Math.cos(a) * v, vy: Math.sin(a) * v, t: Math.random() * 6 });
+      wara.appendChild(img);
+    }
+    function place(p) {
+      p.el.style.transform = "translate(" + p.x + "px," + p.y + "px) rotate(" + Math.sin(p.t) * 8 + "deg)";
+    }
+    sprites.forEach(place);
+    if (still) return;
+    var last = performance.now();
+    function step(now) {
+      var dt = Math.min((now - last) / 1000, .05); last = now;
+      var w = innerWidth, h = innerHeight;
+      sprites.forEach(function (p) {
+        p.x += p.vx * dt; p.y += p.vy * dt; p.t += dt * 1.5;
+        if (p.x < 0) { p.x = 0; p.vx = Math.abs(p.vx); }
+        if (p.x > w - p.s) { p.x = w - p.s; p.vx = -Math.abs(p.vx); }
+        if (p.y < 0) { p.y = 0; p.vy = Math.abs(p.vy); }
+        if (p.y > h - p.s) { p.y = h - p.s; p.vy = -Math.abs(p.vy); }
+        place(p);
+      });
+      waraRaf = requestAnimationFrame(step);
+    }
+    waraRaf = requestAnimationFrame(step);
+  }
+  function waraOff() {
+    if (!wara) return;
+    cancelAnimationFrame(waraRaf);
+    wara.remove();
+    wara = null;
+  }
+  if (root.hasAttribute("data-ghibli")) waraOn();
+
   // ---- footer ----
   var foot = document.querySelector("footer");
   if (foot) {
@@ -52,7 +104,7 @@
     soot.setAttribute("aria-pressed", root.hasAttribute("data-ghibli"));
     soot.addEventListener("click", function () {
       var on = !root.hasAttribute("data-ghibli");
-      if (on) { ghibliFonts(); root.setAttribute("data-ghibli", ""); } else root.removeAttribute("data-ghibli");
+      if (on) { ghibliFonts(); root.setAttribute("data-ghibli", ""); waraOn(); } else { root.removeAttribute("data-ghibli"); waraOff(); }
       soot.setAttribute("aria-pressed", on);
       try { localStorage.setItem("ghibli", on ? "on" : "off"); } catch (e) {}
       replay(soot, "hop");
