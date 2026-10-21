@@ -193,6 +193,7 @@ h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
 .small-projects .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .small-projects .role { color: var(--ink); font-weight: 500; }
 .small-projects .what { font-size: 15px; margin: 0; }
+.small-projects .plinks { margin-top: 2px; }
 .more[open] .small-projects { animation: unfold .4s ease-out; }
 @keyframes unfold { from { opacity: 0; transform: translateY(-4px); } }
 
