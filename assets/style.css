@@ -82,14 +82,17 @@ p { margin: 0 0 12px; }
 
 /* Code Geass: the dark mode toggle is the sigil */
 .geass {
-  width: 28px; height: 28px;
-  display: grid; place-items: center;
-  padding: 0; border: 0; background: none; cursor: pointer;
-  color: var(--faint);
-  transition: color .2s;
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 28px; padding: 0 10px 0 8px;
+  border: 1px solid var(--rule); border-radius: 999px;
+  background: none; cursor: pointer;
+  font: inherit; font-size: 13px; color: var(--text);
+  transition: color .2s, border-color .2s;
 }
-.geass svg { width: 20px; height: 20px; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
-.geass:hover { color: var(--accent); }
+.geass::after { content: "dark"; }
+:root[data-theme="dark"] .geass::after { content: "light"; }
+.geass svg { width: 16px; height: 16px; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+.geass:hover { color: var(--accent); border-color: var(--accent); }
 .geass:hover svg { transform: scale(1.15); }
 
 /* ---------- layout ---------- */
@@ -275,11 +278,20 @@ footer .marks { display: flex; align-items: center; gap: 14px; }
   padding: 0; border: 0; background: none; cursor: pointer;
   width: 24px; height: 24px;
 }
-.sootbtn img { width: 100%; height: 100%; display: block; opacity: .7; transition: transform .5s cubic-bezier(.3,1.6,.5,1), opacity .3s; }
-.sootbtn:hover img { transform: translateY(-3px) rotate(-8deg); }
-.sootbtn.hop img { animation: hop .6s cubic-bezier(.3,1.6,.5,1); }
+/* the png is used as a mask so Totoro takes the color of the current mode */
+.sootbtn i {
+  width: 100%; height: 100%; display: block; opacity: .75;
+  background: #2a6fb8;
+  -webkit-mask: center / contain no-repeat;
+  mask: center / contain no-repeat;
+  transition: transform .5s cubic-bezier(.3,1.6,.5,1), opacity .3s, background-color .6s ease-out;
+}
+:root[data-theme="dark"] .sootbtn i { background: #a9cdf2; }
+:root[data-ghibli] .sootbtn i { background: var(--accent); }
+.sootbtn:hover i { transform: translateY(-3px) rotate(-8deg); }
+.sootbtn.hop i { animation: hop .6s cubic-bezier(.3,1.6,.5,1); }
 @keyframes hop { 40% { transform: translateY(-10px) scale(1.1); } }
-.sootbtn:hover img, :root[data-ghibli] .sootbtn img { opacity: 1; }
+.sootbtn:hover i, :root[data-ghibli] .sootbtn i { opacity: 1; }
 
 body, .bar, a, h1, h2, h3, .project, .photo, .project .media {
   transition: background-color .6s ease-out, color .6s ease-out, border-color .6s ease-out, border-radius .6s ease-out;

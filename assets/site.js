@@ -36,7 +36,7 @@
       '<span>&copy; ' + new Date().getFullYear() + ' &middot; Minneapolis</span>' +
       '<span class="marks">' +
         '<button class="sootbtn" type="button" title="Ghibli mode" aria-label="Ghibli mode" aria-pressed="false">' +
-          '<img src="' + base + 'assets/ghibli/totoro.png" alt="" width="24" height="24">' +
+          '<i style="-webkit-mask-image:url(' + base + 'assets/ghibli/totoro.png);mask-image:url(' + base + 'assets/ghibli/totoro.png)"></i>' +
         '</button>' +
         '<button class="hatbtn" type="button" title="Still looking for the One Piece" aria-label="Straw hat. Plays a sound.">' +
           '<svg class="hat" viewBox="0 0 26 16" aria-hidden="true">' +
