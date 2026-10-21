@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gazi Fahim Abrar</title>
+  <meta name="description" content="AI researcher and engineer in Minneapolis. Robotics, world models, foundation models, NLP, and computer vision.">
+  <link rel="icon" href="assets/profile.jpg">
+  <script>
+    (function () {
+      var t, g; try { t = localStorage.getItem("theme"); g = localStorage.getItem("ghibli"); } catch (e) {}
+      var q = new URLSearchParams(location.search);
+      g = q.get("ghibli") || g; t = q.get("theme") || t;
+      if (g === "on") document.documentElement.setAttribute("data-ghibli", "");
+      document.documentElement.setAttribute("data-theme", t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="name" href="#">Gazi Fahim Abrar</a>
+    <nav aria-label="Links">
+      <a href="assets/Gazi_Fahim_Abrar_CV.pdf">cv</a>
+      <a href="https://github.com/gzee3184">github</a>
+      <a href="https://huggingface.co/abrar008">hugging face</a>
+      <a href="https://www.linkedin.com/in/gfa04">linkedin</a>
+      <button class="geass" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M1.5 8.6c4.2-.3 7.6 1.6 10.5 6.3 2.9-4.7 6.3-6.6 10.5-6.3-3.9 1.1-7 4.7-10.5 11.6C8.5 13.3 5.4 9.7 1.5 8.6Z"/>
+          <path d="M12 3.6l1.7 2.9-1.7 2.9-1.7-2.9Z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section id="about" class="about">
+    <div class="about-text">
+      <h2>about me</h2>
+      <p>I'm Gazi. I grew up in Dhaka, Bangladesh, and ended up in Minneapolis, where I finished my B.S. in computer science at the University of Minnesota in May 2026. I'm open to new opportunities.</p>
+      <p>I work on AI broadly. My interests include robotics, world models, pre- and post-training of foundation models, NLP, and computer vision. Right now I'm a research assistant in <a href="https://www-users.cse.umn.edu/~zhzhang/">Prof. Zhi-Li Zhang's</a> lab at UMN.</p>
+      <p>Lately I've been building <a href="#senku">Senku</a>, a world model that plans from pixels. Before that, our team won Track 3 of the AT&amp;T AI Telco Troubleshooting Challenge out of 1,200+ teams. We presented the solution at MWC in Barcelona.</p>
+      <p>Reach me at gazifahimabrar3174 [at] gmail [dot] com, or abrar008 [at] umn [dot] edu for school. Older projects are on my <a href="https://github.com/Abrar-3184">personal GitHub</a>.</p>
+    </div>
+    <img class="photo" src="assets/profile.jpg" alt="Portrait in a green beanie and glasses" width="480" height="600">
+  </section>
+
+  <section id="news">
+    <h2>news</h2>
+    <ul class="news">
+      <li><span class="meta">Oct 2026</span><span>Released <a href="https://github.com/gzee3184/senku_wm">Senku v0.1.0</a> with code, checkpoints, and per-episode results.</span></li>
+      <li><span class="meta">May 2026</span><span>Graduated from the University of Minnesota.</span></li>
+      <li><span class="meta">Mar 2026</span><span>Presented our Track 3 winning solution at MWC 2026, Barcelona.</span></li>
+      <li><span class="meta">Sep 2025</span><span>Joined the UMN Networking Lab and the Teen &amp; Families Lab as a research assistant.</span></li>
+    </ul>
+  </section>
+
+  <section id="work">
+    <h2>work</h2>
+
+    <article class="project" id="senku">
+      <a class="media" href="https://github.com/gzee3184/senku_wm">
+        <img src="assets/senku_demo.gif" alt="Senku and LeWM planning from the same OGBench Cube start. Senku grasps the cube." loading="lazy" width="1036" height="414">
+      </a>
+      <div class="project-text">
+        <h3><a href="https://github.com/gzee3184/senku_wm">Senku: a world model with a global latent and state tokens</a></h3>
+        <div class="meta">2026 · world models · open source</div>
+        <p>A self-supervised world model that plans from pixels. Each frame becomes a global latent plus 49 spatial state tokens, trained on frames and actions only. With the same planner as LeWM: 88.8% vs 74.2% on OGBench Cube, 37.3% vs 9.0% on starts that need a grasp, and a tie on PushT. It is worse at placing a held cube away (11.0% vs 57.0%).</p>
+        <div class="plinks"><a href="https://github.com/gzee3184/senku_wm">code</a><a href="https://huggingface.co/abrar008/Senku_WM">checkpoints</a></div>
+      </div>
+    </article>
+
+    <article class="project">
+      <a class="media" href="https://github.com/gzee3184/LongHorizonWM">
+        <video autoplay loop muted playsinline preload="metadata" aria-label="PushT episode with the goal 150 steps away. Only the chainer-guided planner reaches it.">
+          <source src="assets/lhwm_pusht.mp4" type="video/mp4">
+        </video>
+      </a>
+      <div class="project-text">
+        <h3><a href="https://github.com/gzee3184/LongHorizonWM">LongHorizonWM: subgoal chaining for long-horizon latent planning</a></h3>
+        <div class="meta">2026 · world models · planning</div>
+        <p>A CEM planner works when the goal is a few steps away and fails when it is far. I trained a chainer and a reachability head on a frozen JEPA encoder to turn a distant goal into one the planner can reach. On PushT with the goal 100 steps out, success goes from 12.3% to 74.1%.</p>
+        <div class="plinks"><a href="https://github.com/gzee3184/LongHorizonWM">code</a></div>
+      </div>
+    </article>
+
+    <article class="project">
+      <a class="media" href="assets/gopher_solution.png">
+        <img src="assets/gopher_solution.png" alt="Diagram: input data goes to a Qwen2.5-1.5B orchestrator that calls a data analyzer and a classifier, then writes an explanation and a root-cause label." loading="lazy" width="1400" height="757">
+      </a>
+      <div class="project-text">
+        <h3>Agentic 5G fault diagnosis with a 1.5B model<span class="badge">1st place</span></h3>
+        <div class="meta">2026 · AT&amp;T AI Telco Troubleshooting Challenge, Track 3 · MWC Barcelona</div>
+        <p>Qwen2.5-1.5B-Instruct runs as an orchestrator over two tools: a data analyzer that turns raw logs into structured telemetry, and an XGBoost classifier that gives it a first guess. We also fine-tuned the model, but the prompted version scored higher (76% vs 71% on test), so we submitted that. With Vivian Tsang, Wei Ye, and Zhi-Li Zhang.</p>
+        <div class="plinks"><a href="https://github.com/gzee3184/AI-Teleco-Finetuned">fine-tuning code</a><a href="https://huggingface.co/abrar008/gopher_submission">submission</a></div>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="media">
+        <video autoplay loop muted playsinline preload="metadata" aria-label="Gazebo simulation: a robot moves as hand gestures in the webcam window change. Sped up 2.5x.">
+          <source src="assets/ros2_gestures.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="project-text">
+        <h3>Hand gesture control for ROS2 robots</h3>
+        <div class="meta">2025 · robotics · ROS2, MediaPipe, Gazebo</div>
+        <p>A ROS2 package that tracks hand landmarks with MediaPipe and turns gestures into velocity commands for a differential-drive robot, tested in Gazebo. The clip is sped up 2.5x.</p>
+      </div>
+    </article>
+
+    <article class="project">
+      <a class="media" href="https://github.com/gzee3184/CSCI_5523-Group-Project-Group-22-">
+        <img src="assets/salary_models.png" alt="Table comparing models. XGBoost has the highest accuracy at 0.729." loading="lazy" width="1200" height="579">
+      </a>
+      <div class="project-text">
+        <h3><a href="https://github.com/gzee3184/CSCI_5523-Group-Project-Group-22-">Predicting career outcomes and salaries of college graduates</a></h3>
+        <div class="meta">2025 · data mining · group project</div>
+        <p>We used the National Survey of College Graduates, 1993 to 2013: 461k rows and 357 features, most of them sparse. I built and evaluated the salary models. XGBoost does best at 72.9% accuracy, ahead of gradient boosting, CatBoost, a decision tree, and kNN.</p>
+        <div class="plinks"><a href="https://github.com/gzee3184/CSCI_5523-Group-Project-Group-22-">code</a></div>
+      </div>
+    </article>
+
+    <details class="more">
+      <summary><span class="closed">more projects</span><span class="open">fewer projects</span></summary>
+      <ul class="small-projects">
+        <li>
+          <div class="row"><span class="role">Gopher Tunnels</span><span class="meta">2024 – 2025 · Node.js, Neo4j</span></div>
+          <p class="what">Backend for a campus app that routes people through UMN's underground tunnels with Dijkstra's and A*. Shipped on the App Store and Google Play with the App Developers' Club.</p>
+        </li>
+        <li>
+          <div class="row"><span class="role">Multiplayer trivia server on AWS</span><span class="meta">2025 · Python, EC2</span></div>
+          <p class="what">A multi-threaded game server with its own TCP protocol that keeps game state in sync across remote clients.</p>
+        </li>
+        <li>
+          <div class="row"><span class="role">Concurrent HTTP web server</span><span class="meta">2025 · C</span></div>
+          <p class="what">A multi-threaded HTTP/1.0 server written from scratch, using mutexes and semaphores to keep shared state safe.</p>
+        </li>
+        <li>
+          <div class="row"><span class="role">Drone delivery simulation</span><span class="meta">2025 · C++</span></div>
+          <p class="what">Added a severe weather system where wind bends drone paths, drains batteries, and causes damage. Built with the Decorator and Singleton patterns.</p>
+        </li>
+        <li>
+          <div class="row"><span class="role">Interface-controlled drone</span><span class="meta">2024 · C++, Arduino</span></div>
+          <p class="what">Led a team of five at SASE Labs building a custom drone and an app to fly it. I wrote the flight control code for its four ESCs.</p>
+        </li>
+        <li>
+          <div class="row"><span class="role">CNN from scratch</span><span class="meta">2024 · NumPy</span></div>
+          <p class="what">A convolutional network that tells cats from dogs, written with only NumPy for the AI Club.</p>
+        </li>
+        <li>
+          <div class="row"><span class="role">k-nearest neighbors on MNIST</span><span class="meta">NumPy</span></div>
+          <p class="what">Handwritten digit recognition at 85% accuracy.</p>
+        </li>
+      </ul>
+    </details>
+  </section>
+
+  <section id="experience">
+    <h2>experience</h2>
+    <ul class="exp">
+      <li>
+        <div class="row"><span class="role">Research Assistant, UMN Networking Lab</span><span class="meta">Sep 2025 – now</span></div>
+        <p class="what">With Prof. Zhi-Li Zhang. Text-to-SQL with RAG over MCP, and small language models for network diagnostics.</p>
+      </li>
+      <li>
+        <div class="row"><span class="role">Research Assistant, UMN Teen &amp; Families Lab</span><span class="meta">Sep 2025 – Apr 2026</span></div>
+        <p class="what">With Prof. Xiaoran Sun and Stanford. BERT-based emotion classification on 100k+ phone screenshots. Paper under review.</p>
+      </li>
+      <li>
+        <div class="row"><span class="role">Learning Assistant, UMN School of Physics</span><span class="meta">Jan – Apr 2024</span></div>
+        <p class="what">PHYS 1302, electromagnetism.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="writing">
+    <h2>writing</h2>
+    <ul class="posts" data-posts="3" data-more></ul>
+  </section>
+
+</main>
+
+<footer></footer>
+
+<script src="assets/posts.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

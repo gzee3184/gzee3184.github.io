@@ -1,0 +1,10 @@
+# source material, kept local only
+*.md
+!README.md
+!writing/posts/*.md
+*.pptx
+*.zip
+/Resume_*.pdf
+/Video from *.mp4
+/*.jpg
+/*.png

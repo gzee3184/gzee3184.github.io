@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Writing</title>
+  <link rel="icon" href="../assets/profile.jpg">
+  <script>
+    (function () {
+      var t, g; try { t = localStorage.getItem("theme"); g = localStorage.getItem("ghibli"); } catch (e) {}
+      var q = new URLSearchParams(location.search);
+      g = q.get("ghibli") || g; t = q.get("theme") || t;
+      if (g === "on") document.documentElement.setAttribute("data-ghibli", "");
+      document.documentElement.setAttribute("data-theme", t || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="name" href="../">Gazi Fahim Abrar</a>
+    <nav aria-label="Links">
+      <a href="../assets/Gazi_Fahim_Abrar_CV.pdf">cv</a>
+      <a href="https://github.com/gzee3184">github</a>
+      <a href="https://huggingface.co/abrar008">hugging face</a>
+      <a href="https://www.linkedin.com/in/gfa04">linkedin</a>
+      <button class="geass" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M1.5 8.6c4.2-.3 7.6 1.6 10.5 6.3 2.9-4.7 6.3-6.6 10.5-6.3-3.9 1.1-7 4.7-10.5 11.6C8.5 13.3 5.4 9.7 1.5 8.6Z"/>
+          <path d="M12 3.6l1.7 2.9-1.7 2.9-1.7-2.9Z"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>writing</h2>
+    <ul class="posts" data-posts="all"></ul>
+  </section>
+</main>
+
+<footer></footer>
+
+<script src="../assets/posts.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

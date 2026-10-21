@@ -1,0 +1,386 @@
+/* ---------- tokens ---------- */
+
+:root {
+  --bg: #ffffff;
+  --ink: #111111;
+  --text: #444444;
+  --faint: #8a8a8a;
+  --rule: #ebebeb;
+  --accent: #c0283c;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --head: var(--font);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #151515;
+  --ink: #f0f0f0;
+  --text: #c2c2c2;
+  --faint: #7d7d7d;
+  --rule: #2a2a2a;
+  --accent: #ff6f7f;
+  color-scheme: dark;
+}
+
+/* ---------- base ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--bg); scroll-behavior: smooth; scroll-padding-top: 70px; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+img, video { max-width: 100%; display: block; }
+
+h1, h2, h3 { color: var(--ink); margin: 0; line-height: 1.3; font-family: var(--head); }
+p { margin: 0 0 12px; }
+
+/* ---------- header ---------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+.bar-in {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.bar .name {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.bar .name:hover { color: var(--accent); text-decoration: none; }
+.bar nav { display: flex; align-items: center; gap: 18px; font-size: 14px; }
+.bar nav a { color: var(--text); }
+.bar nav a:hover { color: var(--accent); text-decoration: none; }
+
+/* Code Geass: the dark mode toggle is the sigil */
+.geass {
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  color: var(--faint);
+  transition: color .2s;
+}
+.geass svg { width: 20px; height: 20px; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+.geass:hover { color: var(--accent); }
+.geass:hover svg { transform: scale(1.15); }
+
+/* ---------- layout ---------- */
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 20px 24px;
+}
+
+section { margin-bottom: 44px; }
+
+h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+
+.meta { font-size: 13px; color: var(--faint); }
+
+/* ---------- about ---------- */
+
+.about {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+.about-text { flex: 1; min-width: 0; max-width: 66ch; }
+.photo {
+  flex-shrink: 0;
+  width: 180px;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* ---------- news ---------- */
+
+.news { list-style: none; margin: 0; padding: 0; }
+.news li { display: flex; gap: 16px; padding-block: 3px; }
+.news .meta { flex: 0 0 72px; padding-top: 1px; }
+
+/* ---------- work ---------- */
+
+.project {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  padding-block: 20px;
+  border-top: 1px solid var(--rule);
+}
+.project:first-of-type { border-top: 0; padding-top: 4px; }
+.project .media {
+  flex: 0 0 300px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--rule);
+}
+.project .media img, .project .media video { width: 100%; height: auto; }
+.project-text { flex: 1; min-width: 0; }
+.project h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.project h3 a { color: var(--ink); }
+.project h3 a:hover { color: var(--accent); }
+.project .meta { margin-bottom: 8px; }
+.project p { font-size: 15px; }
+.badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 7px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  vertical-align: 1px;
+}
+.plinks { font-size: 14px; display: flex; gap: 14px; }
+
+/* ---------- more projects (folded) ---------- */
+
+.more { margin-top: 8px; }
+.more summary {
+  display: inline-block;
+  cursor: pointer;
+  list-style: none;
+  padding: 4px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--text);
+  transition: color .2s, border-color .2s;
+}
+.more summary::-webkit-details-marker { display: none; }
+.more summary:hover { color: var(--accent); border-color: var(--accent); }
+.more .open, .more[open] .closed { display: none; }
+.more[open] .open { display: inline; }
+.small-projects { list-style: none; margin: 16px 0 0; padding: 0; }
+.small-projects li { padding-block: 6px; }
+.small-projects .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.small-projects .role { color: var(--ink); font-weight: 500; }
+.small-projects .what { font-size: 15px; margin: 0; }
+.more[open] .small-projects { animation: unfold .4s ease-out; }
+@keyframes unfold { from { opacity: 0; transform: translateY(-4px); } }
+
+/* ---------- experience ---------- */
+
+.exp { list-style: none; margin: 0; padding: 0; }
+.exp li { padding-block: 6px; }
+.exp .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.exp .role { color: var(--ink); font-weight: 500; }
+.exp .what { font-size: 15px; margin: 0; }
+
+/* ---------- writing ---------- */
+
+.posts { list-style: none; margin: 0; padding: 0; }
+.posts li { padding-block: 10px; border-top: 1px solid var(--rule); }
+.posts li:first-child { border-top: 0; padding-top: 0; }
+.posts .title { color: var(--ink); font-weight: 600; }
+.posts .title:hover { color: var(--accent); }
+.posts .excerpt { font-size: 15px; margin: 2px 0 0; }
+
+/* single post */
+.post h1 { font-size: 28px; margin-bottom: 6px; }
+.post > .meta { display: block; margin-bottom: 28px; }
+.post-body { color: var(--ink); max-width: 68ch; }
+.post-body h2 { margin: 32px 0 10px; }
+.post-body img { border-radius: 6px; margin: 20px auto; }
+.post-body pre { overflow-x: auto; padding: 14px 16px; background: var(--rule); border-radius: 6px; font-size: 13.5px; }
+.post-body code { font-family: var(--mono); font-size: .9em; }
+.post-body blockquote { margin: 0 0 12px; padding-left: 24px; font-style: italic; color: var(--text); }
+
+/* ---------- footer ---------- */
+
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 20px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--faint);
+}
+footer .marks { display: flex; align-items: center; gap: 14px; }
+.hatbtn {
+  position: relative;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  font: inherit; color: inherit;
+}
+
+/* One Piece: the hat gets tossed and lands with a manga "don!" */
+.hat { display: block; width: 24px; height: 15px; transition: transform .35s cubic-bezier(.3,1.6,.5,1); transform-origin: 50% 70%; }
+.hatbtn:hover .hat { transform: rotate(-14deg) translateY(-2px); }
+.hatbtn.toss .hat { animation: toss .8s cubic-bezier(.3,.7,.4,1) both; }
+@keyframes toss {
+  0%   { transform: none; }
+  45%  { transform: translateY(-34px) rotate(-300deg); }
+  80%  { transform: translateY(0) rotate(-360deg); }
+  88%  { transform: translateY(-3px) rotate(-360deg); }
+  100% { transform: rotate(-360deg); }
+}
+.don {
+  position: absolute; left: 50%; bottom: 100%; margin-bottom: 6px;
+  font-size: 15px; font-weight: 900; font-style: normal; white-space: nowrap;
+  color: var(--ink);
+  opacity: 0; pointer-events: none;
+}
+.hatbtn.toss .don { animation: don .9s ease-out .58s both; }
+@keyframes don {
+  0%   { opacity: 0; transform: translateX(-50%) scale(.4) rotate(-12deg); }
+  25%  { opacity: 1; transform: translateX(-50%) scale(1.25) rotate(-8deg); }
+  40%  { transform: translateX(-50%) scale(1) rotate(-8deg); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50%) scale(1) rotate(-8deg) translateY(-4px); }
+}
+
+/* ---------- ghibli mode (the soot sprite in the footer) ----------
+   Totoro by day, Totoro by night. Stills are from Studio Ghibli's free-use gallery. */
+
+.sootbtn {
+  position: relative;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  width: 24px; height: 24px;
+}
+.sootbtn img { width: 100%; height: 100%; display: block; opacity: .7; transition: transform .5s cubic-bezier(.3,1.6,.5,1), opacity .3s; }
+.sootbtn:hover img { transform: translateY(-3px) rotate(-8deg); }
+.sootbtn.hop img { animation: hop .6s cubic-bezier(.3,1.6,.5,1); }
+@keyframes hop { 40% { transform: translateY(-10px) scale(1.1); } }
+.sootbtn:hover img, :root[data-ghibli] .sootbtn img { opacity: 1; }
+
+body, .bar, a, h1, h2, h3, .project, .photo, .project .media {
+  transition: background-color .6s ease-out, color .6s ease-out, border-color .6s ease-out, border-radius .6s ease-out;
+}
+
+.sky { display: none; }
+
+:root[data-ghibli] {
+  --bg: #f3eee0;
+  --ink: #2c3a2b;
+  --text: #4b5646;
+  --faint: #8a8d78;
+  --rule: #ddd5bf;
+  --accent: #2f6a8c;
+  --font: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --head: "Fraunces", Georgia, serif;
+}
+:root[data-ghibli][data-theme="dark"] {
+  --bg: #17222f;
+  --ink: #ece5d3;
+  --text: #c3c3b5;
+  --faint: #7f8a92;
+  --rule: #2b3a4b;
+  --accent: #f0c46e;
+}
+
+/* paper grain */
+:root[data-ghibli] body {
+  font-size: 17px;
+  line-height: 1.75;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .2  0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+:root[data-ghibli] .bar { background: color-mix(in srgb, var(--bg) 92%, transparent); }
+:root[data-ghibli] h2 { font-size: 24px; font-weight: 600; }
+:root[data-ghibli] .project h3 { font-size: 17px; }
+:root[data-ghibli] .bar .name { font-family: var(--head); letter-spacing: .06em; text-transform: none; font-size: 16px; }
+
+/* the banner under the header */
+:root[data-ghibli] .sky {
+  display: block;
+  width: calc(100% - 40px);
+  max-width: 860px;
+  margin: 24px auto 0;
+  height: 150px;
+  border-radius: 22px 30px 18px 34px;
+  background: url("ghibli/day.jpg") center / cover;
+  animation: pan 60s ease-in-out infinite alternate;
+}
+:root[data-ghibli][data-theme="dark"] .sky { background-image: url("ghibli/night.jpg"); }
+@keyframes pan { from { background-position: 30% 50%; } to { background-position: 70% 50%; } }
+.sky-note { display: none; }
+:root[data-ghibli] .sky-note {
+  display: block;
+  width: calc(100% - 40px);
+  max-width: 860px;
+  margin: 6px auto 0;
+  text-align: right;
+  font-size: 11px;
+  color: var(--faint);
+}
+:root[data-ghibli] main { padding-top: 32px; }
+
+/* softer, uneven shapes */
+:root[data-ghibli] .photo { border-radius: 46% 54% 48% 52% / 40% 42% 58% 60%; }
+:root[data-ghibli] .project .media { border-radius: 14px 22px 16px 26px; border-color: transparent; }
+:root[data-ghibli] .badge { border: 0; background: #e9c9c3; color: #6b2e2a; border-radius: 999px; }
+:root[data-ghibli][data-theme="dark"] .badge { background: #4a3a44; color: #f3d3cc; }
+
+/* hand-drawn dividers between projects */
+:root[data-ghibli] .project {
+  border-top: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='10'%3E%3Cpath d='M0 5 Q 15 1 30 5 T 60 5 T 90 5 T 120 5' fill='none' stroke='%23c9bd9c' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") top left / 120px 10px repeat-x;
+  padding-top: 28px;
+}
+:root[data-ghibli][data-theme="dark"] .project {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='10'%3E%3Cpath d='M0 5 Q 15 1 30 5 T 60 5 T 90 5 T 120 5' fill='none' stroke='%23384a5e' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+:root[data-ghibli] .project:first-of-type { background: none; padding-top: 4px; }
+
+/* Spirited Away: a soot sprite is the cursor, and it reaches for a konpeito star over links.
+   The plain sprite is cut from a Studio Ghibli free-use still (chihiro014). */
+:root[data-ghibli], :root[data-ghibli] body { cursor: url("ghibli/soot.png") 16 16, auto; }
+:root[data-ghibli] a, :root[data-ghibli] button, :root[data-ghibli] summary, :root[data-ghibli] .media { cursor: url("ghibli/soot-candy.png") 13 17, pointer; }
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 720px) {
+  .about { flex-direction: column-reverse; gap: 20px; }
+  .photo { width: 150px; }
+  .project { flex-direction: column; gap: 12px; }
+  .project .media { flex-basis: auto; width: 100%; }
+  :root[data-ghibli] .sky { height: 96px; margin-top: 16px; }
+  .bar nav { gap: 12px; font-size: 13px; }
+}
+
+@media (max-width: 480px) {
+  .bar .name { display: none; }
+  .bar-in { justify-content: flex-end; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
