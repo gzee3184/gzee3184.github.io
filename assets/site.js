@@ -38,7 +38,7 @@
     wara.setAttribute("aria-hidden", "true");
     document.body.insertBefore(wara, document.body.firstChild);
     var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var count = innerWidth < 720 ? 3 : 6;
+    var count = innerWidth < 720 ? 6 : 9;
     var picks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].sort(function () { return Math.random() - .5; });
     var sprites = [];
     for (var i = 0; i < count; i++) {
