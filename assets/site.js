@@ -67,8 +67,23 @@
         if (p.x > w - p.s) { p.x = w - p.s; p.vx = -Math.abs(p.vx); }
         if (p.y < 0) { p.y = 0; p.vy = Math.abs(p.vy); }
         if (p.y > h - p.s) { p.y = h - p.s; p.vy = -Math.abs(p.vy); }
-        place(p);
       });
+      // bump into each other: treat each as a circle, mass by area
+      for (var i = 0; i < sprites.length; i++) for (var j = i + 1; j < sprites.length; j++) {
+        var a = sprites[i], b = sprites[j];
+        var dx = (b.x + b.s / 2) - (a.x + a.s / 2), dy = (b.y + b.s / 2) - (a.y + a.s / 2);
+        var d = Math.sqrt(dx * dx + dy * dy) || 1, min = (a.s + b.s) * .42;
+        if (d >= min) continue;
+        var nx = dx / d, ny = dy / d, ma = a.s * a.s, mb = b.s * b.s;
+        var push = (min - d) / 2;   // separate so they don't stick
+        a.x -= nx * push; a.y -= ny * push; b.x += nx * push; b.y += ny * push;
+        var rel = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
+        if (rel >= 0) continue;   // already moving apart
+        var k = 2 * rel / (ma + mb);
+        a.vx += k * mb * nx; a.vy += k * mb * ny;
+        b.vx -= k * ma * nx; b.vy -= k * ma * ny;
+      }
+      sprites.forEach(place);
       waraRaf = requestAnimationFrame(step);
     }
     waraRaf = requestAnimationFrame(step);
